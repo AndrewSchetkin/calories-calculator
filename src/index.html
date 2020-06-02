@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form id="form" action="">
+      <p>Your weight, kg?</p>
+      <input type="text" name="weight">
+      <p>Your height, sm?</p>
+      <input type="text" name="height">
+      <p>Your age, years?</p>
+      <input type="text" name="age">
+      <p>Your gender?</p>
+      <label for=""><input type="radio" name="gender" value="male">male</label>
+      <label for=""><input type="radio" name="gender" value="female">female</label>
+      <p>Your loading level</p>
+      <label for=""><input type="radio" name="load_level" value="minimum">minimum</label>
+      <label for=""><input type="radio" name="load_level" value="light">light</label>
+      <label for=""><input type="radio" name="load_level" value="middle">middle</label>
+      <label for=""><input type="radio" name="load_level" value="high">high</label>
+      <label for=""><input type="radio" name="load_level" value="extreme">extreme</label>
+      <br>
+      <input type="submit">
+    </form>
+    <script>
+      var form = document.getElementById('form');
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        console.log(form)
+      });
+    </script>
+  </body>
+</html>
