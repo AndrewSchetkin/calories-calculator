@@ -1,35 +1,80 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form id="form" action="">
-      <p>Your weight, kg?</p>
-      <input type="text" name="weight">
-      <p>Your height, sm?</p>
-      <input type="text" name="height">
-      <p>Your age, years?</p>
-      <input type="text" name="age">
-      <p>Your gender?</p>
-      <label for=""><input type="radio" name="gender" value="male">male</label>
-      <label for=""><input type="radio" name="gender" value="female">female</label>
-      <p>Your loading level</p>
-      <label for=""><input type="radio" name="load_level" value="minimum">minimum</label>
-      <label for=""><input type="radio" name="load_level" value="light">light</label>
-      <label for=""><input type="radio" name="load_level" value="middle">middle</label>
-      <label for=""><input type="radio" name="load_level" value="high">high</label>
-      <label for=""><input type="radio" name="load_level" value="extreme">extreme</label>
-      <br>
-      <input type="submit">
-    </form>
-    <script>
-      var form = document.getElementById('form');
-      form.addEventListener('submit', function(e){
-        e.preventDefault();
-        console.log(form)
-      });
-    </script>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form id="form" action="">
+            <p>Your weight, kg?</p>
+            <input id="qwe" type="text" name="weight">
+            <p>Your height, sm?</p>
+            <input type="text" name="height">
+            <p>Your age, years?</p>
+            <input type="text" name="age">
+            <p>Your gender?</p>
+            <label for=""><input type="radio" name="gender" value="male">male</label>
+            <label for=""><input type="radio" name="gender" value="female">female</label>
+            <p>Your level of physical activity?</p>
+            <label for=""><input type="radio" name="load_level" value="minimum">minimum</label>
+            <label for=""><input type="radio" name="load_level" value="light">light</label>
+            <label for=""><input type="radio" name="load_level" value="middle">middle</label>
+            <label for=""><input type="radio" name="load_level" value="high">high</label>
+            <label for=""><input type="radio" name="load_level" value="extreme">extreme</label>
+            <br>
+            <input type="submit">
+        </form>
+        <script>
+        let form = document.getElementById('form');
+        
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+
+            let errors = [];
+            let weight = form.querySelector('input[name="weight"]');
+            let height = form.querySelector('input[name="height"]');
+            let age = form.querySelector('input[name="age"]');
+            let gender = form.querySelector('input[name="gender"]:checked');
+            let load_level = form.querySelector('input[name="load_level"]:checked');
+            let weight_value = weight.value.trim();
+            let height_value = height.value.trim();
+            let age_value = age.value.trim();
+            let gender_value;
+            let load_level_value;
+
+            // checking weight
+            if ( weight_value == "" || isNaN(weight_value) ) {
+                errors.push('Input your weight.');
+            }
+
+            // checking height
+            if (height_value == "" || isNaN(height_value)) {
+                errors.push('Input your height.');
+            }
+
+            // checking age
+            if (age_value == "" || isNaN(age_value)) {
+                errors.push('Input your age.');
+            }
+
+            // checking gender
+            if (gender === null) {
+                errors.push('Choose gender.');
+            }else{
+                gender_value = gender.value;
+            }
+
+            // checking level of physical activity
+            if (load_level === null) {
+                errors.push('Choose your level of physical activity.');
+            }else{
+                load_level_value = load_level.value;
+            }
+
+            // console.log(errors);
+            // console.log(form.querySelector('input[name="weight"]').value.trim());
+            // console.log(form.querySelector('input[name="gender"]:checked'));
+        });
+        </script>
+    </body>
 </html>
