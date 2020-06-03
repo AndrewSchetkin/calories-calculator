@@ -29,7 +29,8 @@
         ]
       },
       "electronPackagerConfig": {
-        "packageManager": "npm"
+        "packageManager": "npm",
+        "icon": "icon.ico"
       },
       "electronWinstallerConfig": {
         "name": "calories_calculator"
