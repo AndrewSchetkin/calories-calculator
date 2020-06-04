@@ -22,34 +22,14 @@
         <div id="result"></div>
         <div id="errors"></div>
         <script>
-            function setAttributes(obj, params)
-            {
-                for (let key in params) {
-                    obj.setAttribute(key, params[key]);
-                }
-            }
-
-            function printRadioInputs(name, array, container_id)
-            {
-                let container = document.getElementById(container_id);
-                array.forEach(function(val){
-                    let label = document.createElement("label");
-                    let input = document.createElement("input");
-                    setAttributes(input, {'type':'radio', 'name':name, 'value':val});
-                    label.appendChild(input);
-                    label.append(val);
-                    container.appendChild(label);
-                })
-            }
-
             let form = document.getElementById('form');
             let errors_container = document.getElementById('errors');
             let result_container = document.getElementById('result');
-            var gender_add_to_WHY = {
+            const gender_add_to_WHY = {
                 'male': 5,
                 'female': -161
             };
-            var loading_levels = {
+            const loading_levels = {
                 'minimum': 1.2,
                 'light': 1.35,
                 'middle': 1.55,
@@ -110,16 +90,34 @@
                 if (errors.length) {
                     let errors_new_html = '<ul>';
                     for (let i = 0; i < errors.length; i++) {
-                        errors_new_html += '<li>'+ errors[i]+'</li>';
+                        errors_new_html += `<li>${errors[i]}</li>`;
                     }
                     errors_new_html += '</ul>';
                     errors_container.innerHTML = errors_new_html;
                 }else{
                     // calculating result
                     let bmr = (9.99 * weight_value + 6.25 * height_value - 4.92 * age_value + gender_add_to_WHY[gender_value]) * loading_levels[load_level_value];
-                    result_container.innerHTML = 'Optimal calories level = ' + bmr;
+                    result_container.innerHTML = `Optimal calories level = ${bmr}`;
                 }
             });
+
+            function setAttributes(obj, params) {
+                for (let key in params) {
+                    obj.setAttribute(key, params[key]);
+                }
+            }
+
+            function printRadioInputs(name, array, container_id) {
+                let container = document.getElementById(container_id);
+                array.forEach(function (val) {
+                    let label = document.createElement("label");
+                    let input = document.createElement("input");
+                    setAttributes(input, { 'type': 'radio', 'name': name, 'value': val });
+                    label.appendChild(input);
+                    label.append(val);
+                    container.appendChild(label);
+                })
+            }
         </script>
     </body>
 </html>
